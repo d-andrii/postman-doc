@@ -1,0 +1,89 @@
+<script lang="ts">
+	import {marked} from 'marked';
+
+	import type {CollectionItem} from './types/collection';
+	import {getEntryUrl} from './helpers/entry';
+	import Response from './Response.svelte';
+
+	export let entry: CollectionItem;
+	export let entryUrl = '';
+
+	$: entryUrl = getEntryUrl(entry);
+</script>
+
+{#if 'item' in entry}
+	<section>
+		<h2>{entry.name}</h2>
+
+		{#each entry.item as item}
+			<svelte:self entry={item} />
+		{/each}
+	</section>
+{:else}
+	<div id={entryUrl} class="details">
+		<h3>{entry.name}</h3>
+
+		<div>
+			<div class="route">
+				<div class="method">{entry.request.method}</div>
+				<div class="path">/{entry.request.url?.path.join('/')}</div>
+			</div>
+
+			{#if entry.request.description}
+				<p>{@html marked(entry.request.description)}</p>
+			{/if}
+		</div>
+
+		<div class="response">
+			{#if entry.response.length}
+				<!-- <h4>Response</h4> -->
+				<Response responses={entry.response} />
+			{/if}
+		</div>
+	</div>
+{/if}
+
+<style>
+	h2 {
+		border-bottom: 1px solid var(--theme-elevation-1);
+		padding-bottom: 10px;
+	}
+
+	h3 {
+		margin-top: 0;
+		grid-column: 1 / span 2;
+	}
+
+	.details {
+		box-sizing: border-box;
+		column-gap: 20px;
+		display: grid;
+		grid-template-columns: auto 480px;
+		margin-bottom: 20px;
+	}
+
+	.route {
+		cursor: pointer;
+		font-family: var(--theme-font-main);
+		margin-bottom: 20px;
+		margin-top: -10px;
+	}
+
+	.method,
+	.path {
+		display: inline-block;
+	}
+
+	.method {
+		font-weight: bold;
+	}
+
+	.path {
+		color: var(--theme-text-second);
+	}
+
+	.response {
+		border-left: 1px solid var(--theme-elevation-1);
+		padding: 0 20px;
+	}
+</style>
