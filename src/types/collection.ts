@@ -12,6 +12,7 @@ export interface CollectionItemRequest {
 	header?: Array<{
 		key: string;
 		value: string;
+		description: string;
 	}>;
 	body?: {
 		mode: 'raw';
@@ -25,6 +26,11 @@ export interface CollectionItemRequest {
 	url?: {
 		raw: string;
 		path: string[];
+		query?: Array<{
+			key: string;
+			value: string;
+			description: string;
+		}>;
 	};
 }
 

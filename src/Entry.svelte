@@ -32,11 +32,58 @@
 			{#if entry.request.description}
 				<p>{@html marked(entry.request.description)}</p>
 			{/if}
+
+			{#if entry.request.url?.query?.length}
+				<div>
+					<h4>Query</h4>
+					<table>
+						<thead>
+							<tr>
+								<th>Param</th>
+								<th>Value</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each entry.request.url.query as item}
+								<tr>
+									<td>{item.key}</td>
+									<td>{item.value}</td>
+									<td>{item.description}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			{/if}
+
+			{#if entry.request.header?.length}
+				<div>
+					<h4>Headers</h4>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Value</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each entry.request.header as item}
+								<tr>
+									<td>{item.key}</td>
+									<td>{item.value}</td>
+									<td>{item.description}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			{/if}
 		</div>
 
 		<div class="response">
 			{#if entry.response.length}
-				<!-- <h4>Response</h4> -->
 				<Response responses={entry.response} />
 			{/if}
 		</div>

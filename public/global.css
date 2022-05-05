@@ -47,13 +47,13 @@ table {
 	border-collapse: collapse;
 	max-width: 100%;
 	margin: 1rem 0;
+	width: 100%;
 }
 
 td,
 th {
 	border: 1px solid var(--theme-elevation-5);
 	padding: 4px 6px;
-	word-break: break-word;
 }
 
 button {

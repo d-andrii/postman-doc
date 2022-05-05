@@ -20,6 +20,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{collection?.info.name || 'Loading...'}</title>
+</svelte:head>
+
 {#if collection}
 	<main>
 		<div class="nav">
