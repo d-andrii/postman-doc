@@ -1,0 +1,22 @@
+name: Main
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+      - name: Install and Build 🔧
+        run: |
+          npm ci
+          npm run build
+          tar -czvf build.tar.gz public
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build.tar.gz
