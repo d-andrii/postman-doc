@@ -131,6 +131,6 @@
 
 	.response {
 		border-left: 1px solid var(--theme-elevation-1);
-		padding: 0 20px;
+		padding-left: 20px;
 	}
 </style>

@@ -33,7 +33,7 @@
 				<NavItem entry={item} />
 			{/each}
 		</div>
-		<div>
+		<div class="content">
 			<h1>{collection.info.name}</h1>
 			<p>
 				{#await parseMarkdown(collection.info.description) then result}
@@ -51,7 +51,7 @@
 <style>
 	main {
 		box-sizing: border-box;
-		column-gap: 40px;
+		column-gap: 20px;
 		display: grid;
 		grid-template-columns: 280px auto;
 		padding: 20px 0;
@@ -63,8 +63,12 @@
 		box-sizing: border-box;
 		height: 100vh;
 		overflow: auto;
-		padding: 0 20px;
+		padding: 0 20px 40px 10px;
 		position: sticky;
 		top: 0;
+	}
+
+	.content {
+		padding-right: 40px;
 	}
 </style>

@@ -36,6 +36,10 @@
 		margin-left: 10px;
 	}
 
+	details {
+		margin-left: 10px;
+	}
+
 	.route {
 		color: var(--theme-text-second);
 		display: block;
