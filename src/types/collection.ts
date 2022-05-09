@@ -6,6 +6,27 @@ export interface CollectionItemFolder extends CollectionItemBase {
 	item: CollectionItem[];
 }
 
+export interface RawBody {
+	mode: 'raw';
+	options?: {
+		raw: {
+			language: string;
+		};
+	};
+	raw: string;
+}
+
+export interface FormDataBody {
+	mode: 'formdata';
+	formdata: Array<{
+		key: string;
+		description: string;
+		type: string;
+		value?: string;
+		src?: string | string[];
+	}>;
+}
+
 export interface CollectionItemRequest {
 	method: string;
 	description?: string;
@@ -14,15 +35,7 @@ export interface CollectionItemRequest {
 		value: string;
 		description: string;
 	}>;
-	body?: {
-		mode: 'raw';
-		options?: {
-			raw: {
-				language: string;
-			};
-		};
-		raw: string;
-	};
+	body?: RawBody | FormDataBody;
 	url?: {
 		raw: string;
 		path: string[];
