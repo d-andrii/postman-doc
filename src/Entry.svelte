@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {marked} from 'marked';
+	import {parseMarkdown} from './helpers/marked';
 
 	import type {CollectionItem} from './types/collection';
 	import {getEntryUrl} from './helpers/entry';
@@ -30,7 +30,7 @@
 			</div>
 
 			{#if entry.request.description}
-				<p>{@html marked(entry.request.description)}</p>
+				<p>{@html parseMarkdown(entry.request.description)}</p>
 			{/if}
 
 			{#if entry.request.url?.query?.length}

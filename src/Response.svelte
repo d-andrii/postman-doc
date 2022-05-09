@@ -61,13 +61,13 @@
 		/>
 	</details>
 
-	<section>
-		<h4>Response</h4>
+	{#if activeResponse.body}
+		<section>
+			<h4>Response</h4>
 
-		{#if activeResponse.body}
 			<RawBody {contentType} bodyRaw={activeResponse.body} />
-		{/if}
-	</section>
+		</section>
+	{/if}
 {/if}
 
 <style>
