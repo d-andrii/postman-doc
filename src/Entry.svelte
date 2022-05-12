@@ -15,6 +15,12 @@
 	<section>
 		<h2>{entry.name}</h2>
 
+		{#if entry.description}
+			{#await parseMarkdown(entry.description) then result}
+				<p>{@html result}</p>
+			{/await}
+		{/if}
+
 		{#each entry.item as item}
 			<svelte:self entry={item} />
 		{/each}
@@ -30,7 +36,9 @@
 			</div>
 
 			{#if entry.request.description}
-				<p>{@html parseMarkdown(entry.request.description)}</p>
+				{#await parseMarkdown(entry.request.description) then result}
+					<p>{@html result}</p>
+				{/await}
 			{/if}
 
 			{#if entry.request.url?.query?.length}

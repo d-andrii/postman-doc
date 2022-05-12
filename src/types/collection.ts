@@ -3,6 +3,7 @@ export interface CollectionItemBase {
 }
 
 export interface CollectionItemFolder extends CollectionItemBase {
+	description?: string;
 	item: CollectionItem[];
 }
 
