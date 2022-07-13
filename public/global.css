@@ -56,7 +56,8 @@ th {
 	padding: 4px 6px;
 }
 
-button {
+button,
+a {
 	background: none;
 	border: 1px solid var(--theme-primary);
 	color: var(--theme-text-main);
@@ -66,7 +67,12 @@ button {
 	padding: 10px 20px;
 }
 
-button:hover {
+a {
+	text-decoration: none;
+}
+
+button:hover,
+a:hover {
 	background-color: var(--theme-elevation-1);
 }
 

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang='ts'>
 	import Entry from './Entry.svelte';
 	import prism from 'prismjs';
 	import 'prismjs/plugins/autoloader/prism-autoloader';
@@ -26,15 +26,18 @@
 
 {#if collection}
 	<main>
-		<div class="nav">
+		<div class='nav'>
 			<h2>Routes</h2>
 
 			{#each collection.item as item}
 				<NavItem entry={item} />
 			{/each}
 		</div>
-		<div class="content">
-			<h1>{collection.info.name}</h1>
+		<div class='content'>
+			<header>
+				<h1>{collection.info.name}</h1>
+				<a href='/doc.json' download>Download Collection</a>
+			</header>
 			<p>
 				{#await parseMarkdown(collection.info.description) then result}
 					{@html result}
@@ -56,6 +59,12 @@
 		grid-template-columns: 280px auto;
 		padding: 20px 0;
 		width: 100%;
+	}
+
+	header {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
 	}
 
 	.nav {
