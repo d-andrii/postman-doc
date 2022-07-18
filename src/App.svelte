@@ -18,6 +18,8 @@
 			.then((res) => res.json())
 			.then((doc) => (collection = doc));
 	});
+
+	$: collection && window.location.hash && document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
 </script>
 
 <svelte:head>
@@ -36,7 +38,7 @@
 		<div class='content'>
 			<header>
 				<h1>{collection.info.name}</h1>
-				<a href='/doc.json' download>Download Collection</a>
+				<a href='/doc.json' class='btn' download>Download Collection</a>
 			</header>
 			<p>
 				{#await parseMarkdown(collection.info.description) then result}

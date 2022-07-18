@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang='ts'>
 	import {createCurlCommand} from './helpers/curl';
 	import Highlight from './Highlight.svelte';
 
@@ -12,15 +12,16 @@
 	let activeResponse: CollectionItemRoute['response'][0];
 	let contentType: string;
 
-	$: activeResponse = responses.length && responses[0];
+	$: activeResponse = responses && responses.length && responses[0];
 	$: contentType = activeResponse?.header
 		?.find((item) => item.key?.toLowerCase() === 'content-type')
 		?.value.replace(/;.+/, '');
 </script>
 
-<div class="tabs">
+<div class='tabs'>
 	{#each responses as response}
 		<button
+			class='btn'
 			class:active={activeResponse === response}
 			on:click={() => (activeResponse = response)}
 		>
@@ -57,7 +58,7 @@
 					) || {},
 				data: activeResponse.originalRequest.body?.raw || '',
 			})}
-			language="shell"
+			language='shell'
 		/>
 	</details>
 
